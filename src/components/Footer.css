@@ -1,0 +1,43 @@
+/*src>components>Footer.css*/
+.footer {
+  position: relative;
+  background: #111;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.footer-bg-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(120deg, #ff416c, #ff4b2b, #1a1a1a, #111);
+  background-size: 400% 400%;
+  animation: gradientMove 20s ease infinite;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.social-icons a {
+  color: #fff;
+  margin: 0 10px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #ff416c;
+  transform: scale(1.2);
+}
