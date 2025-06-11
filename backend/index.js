@@ -1,27 +1,24 @@
-import express from 'express';
-import cors from 'cors';
-import fetch from 'node-fetch';
-import dotenv from 'dotenv';
+const express = require('express');
+const axios = require('axios');
+const cors = require('cors');
+require('dotenv').config();
 
-dotenv.config();
 const app = express();
 app.use(cors());
 
-const API_KEY = process.env.NEWS_API_KEY;
-
-app.get('/news', async (req, res) => {
-  const { country = 'us', category = 'general' } = req.query;
-  const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&pageSize=8&apiKey=${API_KEY}`;
-  
+app.get('/api/news', async (req, res) => {
   try {
-    const response = await fetch(url);
-    const data = await response.json();
-    res.json(data);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Failed to fetch news" });
+    const category = req.query.category || 'general';
+    const response = await axios.get(
+      `https://newsapi.org/v2/top-headlines?country=us&pageSize=8&category=${category}&apiKey=${process.env.VITE_API_KEY}`
+    );
+    res.json(response.data);
+  } catch (error) {
+    console.error("News fetch error:", error.message);
+    res.status(500).json({ error: 'Failed to fetch news' });
   }
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
+// ✅ DO NOT use app.listen()
+// ❗ Vercel requires exporting the app instead:
+module.exports = app;
