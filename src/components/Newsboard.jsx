@@ -6,7 +6,7 @@ const Newsboard = ({ category = 'general' }) => {
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
-        const url = `https://newsapi.org/v2/top-headlines?country=us&pageSize=8&category=${category}&apiKey=${import.meta.env.VITE_API_KEY}`;
+        const url = `http://localhost:5000/news?country=us&category=${category}`;
         
         fetch(url)
             .then(response => response.json())

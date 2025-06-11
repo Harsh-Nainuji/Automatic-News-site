@@ -1,10 +1,12 @@
-// src/components/Navbar.jsx
 const Navbar = ({ setCategory }) => {
   return (
-    <nav className="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+    <nav
+      className="navbar navbar-expand-lg navbar-dark sticky-top glass-navbar"
+      style={{ backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", background: "rgba(0,0,0,0.4)" }}
+    >
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          <span className="badge bg-light text-dark fs-4">News Now</span>
+        <a className="navbar-brand fw-bold fs-3 text-white" href="#">
+          <span className="badge bg-warning text-dark px-3 py-2">News Now</span>
         </a>
         <button
           className="navbar-toggler"
@@ -19,7 +21,7 @@ const Navbar = ({ setCategory }) => {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
             {[
               "general",
               "business",
@@ -31,7 +33,7 @@ const Navbar = ({ setCategory }) => {
             ].map((cat) => (
               <li className="nav-item" key={cat}>
                 <button
-                  className="nav-link btn btn-link text-white"
+                  className="nav-link btn btn-link nav-glass-link"
                   style={{ cursor: "pointer", textTransform: "capitalize" }}
                   onClick={() => setCategory(cat)}
                 >
