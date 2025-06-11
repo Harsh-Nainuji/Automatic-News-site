@@ -19,6 +19,15 @@ app.get('/api/news', async (req, res) => {
   }
 });
 
+app.get(`/`,(req,res)=>
+{
+res.send({
+  activeStatus: true,
+  error: null,
+  
+})
+})
+
 // ✅ DO NOT use app.listen()
 // ❗ Vercel requires exporting the app instead:
 module.exports = app;
